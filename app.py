@@ -3,7 +3,7 @@ app.py
 Flask backend for the airfare prediction tool.
 
 Requires:
-  - model.pkl at /Users/luozihan/Desktop/model.pkl
+  - model.pkl in the same directory as this file
   - city_lookup.json in the same directory (generate with city_lookup.py)
 
 Run:
@@ -24,7 +24,7 @@ from flask_cors import CORS
 # ---------------------------------------------------------------------------
 
 BASE_DIR    = os.path.dirname(os.path.abspath(__file__))
-MODEL_PATH  = '/Users/luozihan/Desktop/model.pkl'
+MODEL_PATH  = os.path.join(BASE_DIR, 'model.pkl')
 LOOKUP_PATH = os.path.join(BASE_DIR, 'city_lookup.json')
 STATS_PATH  = os.path.join(BASE_DIR, 'model_stats.json')
 
