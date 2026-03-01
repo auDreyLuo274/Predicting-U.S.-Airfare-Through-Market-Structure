@@ -1,5 +1,4 @@
 # Predicting U.S. Airfare Through Market Structure
-**Datathon 2025**
 
 **[→ Live Demo: FareCheck Tool](https://airfare-predict.onrender.com/airfare_tool.html)**
 
@@ -25,16 +24,16 @@ This project analyzes and predicts U.S. domestic airfare using the U.S. DOT Cons
 
 | Model | R² | MAE | RMSE |
 |---|---|---|---|
-| Random Forest (Part 2, tuned) | 0.884 | — | — |
-| **XGBoost — Full Model (Part 3)** | **0.9414** | **$11.39** | **$15.56** |
+| Random Forest (tuned) | 0.884 | — | — |
+| **XGBoost — Full Model** | **0.9414** | **$11.39** | **$15.56** |
+
+> MAE and RMSE were not recorded for the Random Forest model; only R² and OOB score were captured.
 
 The XGBoost model outperforms the Random Forest baseline despite using only 11 structural features (no city or carrier identity dummies), demonstrating that market structure alone explains over 94% of fare variation.
 
 ---
 
 ### Finding 1 — Large Airports Are Actually Cheaper (Myth-Busted)
-
-> **Part 1 (EDA, Carina Zhang)**
 
 A common assumption is that flying through major hub airports is more expensive. The data shows the opposite:
 
@@ -46,8 +45,6 @@ Routes connecting major hubs have *lower* carrier concentration than average —
 ---
 
 ### Finding 2 — Short-Haul Routes Are the Most Expensive Per Mile (Myth-Busted)
-
-> **Part 1 (EDA, Carina Zhang)**
 
 It is often assumed that longer flights cost more. Per-mile, the reverse is true:
 
@@ -62,15 +59,11 @@ Short-haul passengers pay **2.1× more per mile** than long-haul passengers. Fix
 
 ### Finding 3 — Monopoly Premium Is Strongest on Short Routes
 
-> **Part 3 (SHAP Analysis, Audrey Luo)**
-
 SHAP dependence analysis of `large_ms` (dominant carrier market share) with `nsmiles` as the interaction index reveals that carrier concentration has the strongest upward effect on fares on **short-haul routes**. On longer routes, the monopoly premium is partially offset by the presence of more competing airlines drawn to high-volume transcontinental corridors.
 
 ---
 
 ### Finding 4 — Market Price Floor Is Downstream of Market Structure
-
-> **Part 3 (Ablation Study, Audrey Luo)**
 
 An ablation study trained an otherwise-identical XGBoost model with `fare_low` (the average fare paid by the most budget-conscious passengers — a proxy for the competitive price floor) removed. Model performance showed no meaningful degradation in R², MAE, or RMSE.
 
@@ -80,11 +73,9 @@ An ablation study trained an otherwise-identical XGBoost model with `fare_low` (
 
 ### Finding 5 — Feature Importance Ranking (SHAP)
 
-> **Part 3 (Audrey Luo)**
-
 Mean absolute SHAP values from the full XGBoost model:
 
-| Rank | Feature | Mean |SHAP| | Interpretation |
+| Rank | Feature | Mean \|SHAP\| | Interpretation |
 |---|---|---|---|
 | 1 | `fare_low` | 24.85 | Market price floor (downstream of competition) |
 | 2 | `nsmiles` | 23.07 | Route distance drives base cost |
@@ -100,13 +91,13 @@ Mean absolute SHAP values from the full XGBoost model:
 
 ## Modeling Approach
 
-### Part 1 — Exploratory Analysis (Carina Zhang)
+### Exploratory Analysis
 Scatter plots of fare vs. distance, demand (log scale), market share, and price spread across segments. Linear regression models benchmarking each feature group in isolation, producing interpretable coefficient-level evidence before moving to ensemble methods.
 
-### Part 2 — Random Forest Baseline (Edwin Zeng)
+### Random Forest Baseline
 `RandomForestRegressor` with full categorical encoding of city and carrier identity via one-hot encoding. Hyperparameter tuning via `RandomizedSearchCV` (80 iterations, 5-fold CV). Permutation importance computed across all features including city/carrier dummies. OOB R²: **0.889**, Test R²: **0.884**.
 
-### Part 3 — XGBoost + SHAP + Ablation (Audrey Luo)
+### XGBoost + SHAP + Ablation
 
 Features organized in three layers to isolate each group's contribution:
 
