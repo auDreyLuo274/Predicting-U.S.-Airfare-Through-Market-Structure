@@ -46,7 +46,13 @@ CORS(app)
 @app.route('/cities', methods=['GET'])
 def get_cities():
     """Return sorted list of all city names."""
-    return jsonify(sorted(city_lookup.keys()))
+    return jsonify({'cities': sorted(city_lookup.keys())})
+
+
+@app.route('/stats', methods=['GET'])
+def get_stats():
+    """Return model stats (SHAP values + feature stats) for the frontend."""
+    return jsonify(model_stats)
 
 
 @app.route('/predict', methods=['POST'])
