@@ -5,4 +5,3 @@ openpyxl
 xgboost
 scikit-learn
 numpy
-.claude
