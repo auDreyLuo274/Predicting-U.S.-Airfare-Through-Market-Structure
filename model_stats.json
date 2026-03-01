@@ -1,0 +1,86 @@
+{
+  "feature_stats": {
+    "nsmiles": {
+      "min": 129.0,
+      "max": 2724.0,
+      "mean": 1061.8396172522137,
+      "median": 936.0
+    },
+    "passengers": {
+      "min": 163.0,
+      "max": 21058.0,
+      "mean": 1024.5817623536132,
+      "median": 526.0
+    },
+    "large_ms": {
+      "min": 0.2097,
+      "max": 1.0,
+      "mean": 0.5663220294201656,
+      "median": 0.5416
+    },
+    "lf_ms": {
+      "min": 0.01,
+      "max": 1.0,
+      "mean": 0.32773730362753495,
+      "median": 0.26555
+    },
+    "fare_low": {
+      "min": 66.16,
+      "max": 669.74,
+      "mean": 180.95483219080262,
+      "median": 175.215
+    },
+    "TotalFaredPax_city1": {
+      "min": 0.0,
+      "max": 8840080.0,
+      "mean": 3218698.0350376084,
+      "median": 2873210.0
+    },
+    "TotalPerLFMkts_city1": {
+      "min": 0.0,
+      "max": 1.0,
+      "mean": 0.8359650521279633,
+      "median": 0.8659
+    },
+    "TotalPerPrem_city1": {
+      "min": -0.6194,
+      "max": 0.9659,
+      "mean": -0.007356799485861173,
+      "median": -0.00315
+    },
+    "TotalFaredPax_city2": {
+      "min": 0.0,
+      "max": 8840080.0,
+      "mean": 2950324.79624869,
+      "median": 2764030.0
+    },
+    "TotalPerLFMkts_city2": {
+      "min": 0.0,
+      "max": 1.0,
+      "mean": 0.8311963605636484,
+      "median": 0.8632
+    },
+    "TotalPerPrem_city2": {
+      "min": -0.6411,
+      "max": 0.3508,
+      "mean": -0.0385175795010949,
+      "median": -0.0219
+    }
+  },
+  "mean_shap": {
+    "nsmiles": 23.073638916015625,
+    "passengers": 5.636225700378418,
+    "large_ms": 1.5918313264846802,
+    "lf_ms": 10.211395263671875,
+    "fare_low": 24.852584838867188,
+    "TotalFaredPax_city1": 2.2508881092071533,
+    "TotalPerLFMkts_city1": 1.831397533416748,
+    "TotalPerPrem_city1": 7.823276996612549,
+    "TotalFaredPax_city2": 2.8707542419433594,
+    "TotalPerLFMkts_city2": 1.3505817651748657,
+    "TotalPerPrem_city2": 5.882217884063721
+  },
+  "model_r2": 0.9414,
+  "model_mae": 11.39,
+  "model_rmse": 15.56
+}
